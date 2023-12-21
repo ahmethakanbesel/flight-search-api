@@ -25,7 +25,10 @@ public class AirportResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<AirportDTO>> getAllAirports() {
+    public ResponseEntity<List<AirportDTO>> getAllAirports(@RequestParam(required = false) String city) {
+        if (city != null) {
+            return ResponseEntity.ok(airportService.findAllByCity(city));
+        }
         return ResponseEntity.ok(airportService.findAll());
     }
 

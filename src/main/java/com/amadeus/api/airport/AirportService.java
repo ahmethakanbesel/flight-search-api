@@ -3,6 +3,7 @@ package com.amadeus.api.airport;
 import com.amadeus.api.util.NotFoundException;
 import java.util.List;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
@@ -17,6 +18,13 @@ public class AirportService {
 
     public List<AirportDTO> findAll() {
         final List<Airport> airports = airportRepository.findAll(Sort.by("id"));
+        return airports.stream()
+                .map(airport -> mapToDTO(airport, new AirportDTO()))
+                .toList();
+    }
+
+    public List<AirportDTO> findAllByCity(String city) {
+        final List<Airport> airports = airportRepository.findAllByCity(city, Sort.by("id"));
         return airports.stream()
                 .map(airport -> mapToDTO(airport, new AirportDTO()))
                 .toList();
@@ -55,5 +63,4 @@ public class AirportService {
         airport.setCity(airportDTO.getCity());
         return airport;
     }
-
 }
