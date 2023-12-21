@@ -4,14 +4,13 @@ import com.amadeus.api.airport.Airport;
 import com.amadeus.api.airport.AirportRepository;
 import com.amadeus.api.util.IllegalActionException;
 import com.amadeus.api.util.NotFoundException;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
 
 @Service

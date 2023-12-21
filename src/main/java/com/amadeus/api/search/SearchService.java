@@ -2,12 +2,11 @@ package com.amadeus.api.search;
 
 import com.amadeus.api.flight.FlightDTO;
 import com.amadeus.api.flight.FlightService;
-import com.amadeus.api.util.NotFoundException;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 
 
 @Service

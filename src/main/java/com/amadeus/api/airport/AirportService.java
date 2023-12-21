@@ -4,10 +4,10 @@ import com.amadeus.api.flight.FlightDTO;
 import com.amadeus.api.flight.FlightService;
 import com.amadeus.api.util.IllegalActionException;
 import com.amadeus.api.util.NotFoundException;
-import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+
+import java.util.List;
 
 
 @Service
