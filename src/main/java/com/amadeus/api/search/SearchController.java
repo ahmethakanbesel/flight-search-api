@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +29,14 @@ public class SearchController {
 
     @GetMapping
     public ResponseEntity<List<FlightDTO>> getAllFlights(
-            @RequestParam() Long departureCity,
-            @RequestParam() LocalDate departureDate,
-            @RequestParam(required = false) Long arrivalCity,
-            @RequestParam(required = false) LocalDate returnDate
+            @RequestParam() String departureCity,
+            @RequestParam() @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate,
+            @RequestParam() String arrivalCity,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate returnDate
     ) {
-        return ResponseEntity.ok(flightService.findAll());
+        if (returnDate != null) {
+            return ResponseEntity.ok(flightService.searchRoundTripFlights(departureCity, arrivalCity, departureDate, returnDate));
+        }
+        return ResponseEntity.ok(flightService.searchOneWayFlights(departureCity, arrivalCity, departureDate));
     }
 }
