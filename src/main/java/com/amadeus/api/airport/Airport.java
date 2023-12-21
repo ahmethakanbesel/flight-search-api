@@ -1,13 +1,7 @@
 package com.amadeus.api.airport;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Entity
-@Table(name = "Airports")
+@Table(name = "Airports", indexes = {@Index(name = "idx_airport_city", columnList = "city")})
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
