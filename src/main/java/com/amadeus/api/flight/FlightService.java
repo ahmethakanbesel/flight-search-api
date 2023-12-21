@@ -53,7 +53,7 @@ public class FlightService {
     private FlightDTO mapToDTO(final Flight flight, final FlightDTO flightDTO) {
         flightDTO.setId(flight.getId());
         flightDTO.setDepartureTime(flight.getDepartureTime());
-        flightDTO.setArrivalTime(flight.getArrivalTime());
+        flightDTO.setArrivalTime(flight.getReturnTime());
         flightDTO.setTicketPrice(flight.getTicketPrice());
         flightDTO.setTicketCurrency(flight.getTicketCurrency());
         flightDTO.setDepartureAirport(flight.getDepartureAirport() == null ? null : flight.getDepartureAirport().getId());
@@ -63,7 +63,7 @@ public class FlightService {
 
     private Flight mapToEntity(final FlightDTO flightDTO, final Flight flight) {
         flight.setDepartureTime(flightDTO.getDepartureTime());
-        flight.setArrivalTime(flightDTO.getArrivalTime());
+        flight.setReturnTime(flightDTO.getArrivalTime());
         flight.setTicketPrice(flightDTO.getTicketPrice());
         flight.setTicketCurrency(flightDTO.getTicketCurrency());
         final Airport departureAirport = flightDTO.getDepartureAirport() == null ? null : airportRepository.findById(flightDTO.getDepartureAirport())
