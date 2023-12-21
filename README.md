@@ -1,18 +1,31 @@
-# Api
+# Flight Search Api
 
-This app was created with Bootify.io - tips on working with the code [can be found here](https://bootify.io/next-steps/).
-Feel free to contact us for further questions.
+## Technologies
+
+- Spring Boot 3
+- Gradle
+- H2 Database
+- Lombok
+- Swagger
+- Spring Security
+- Spring Data JPA
+
+## Assumptions & Notes
+
+- All endpoints need authentication. `POST`, `PUT`, `DELETE` methods can be used with `admin` role only.
+    - By default, there are two users. `admin` and `user`. Both have the same password `password`.
+- Unique id (`Long`) of airports used as `IATA` code.
+- There can be multiple airports in the same city.
+- The scheduled task runs every 15 seconds to demonstrate the functionality. You can uncomment the `@Scheduled`
+  annotation
+  in `FlightTasks` to run it every midnight.
+    - In each run, it will generate 1 to 10 flights and save them to the database.
 
 ## Development
 
-Update your local database connection in `application.yml` or create your own `application-local.yml` file to override
+(Optional) Update your local database connection in `application.yml` or create your own `application-local.yml` file to
+override
 settings for development.
-
-During development it is recommended to use the profile `local`. In IntelliJ `-Dspring.profiles.active=local` can be
-added in the VM options of the Run Configuration after enabling this property in "Modify options".
-
-Lombok must be supported by your IDE. For IntelliJ install the Lombok plugin and enable annotation processing -
-[learn more](https://bootify.io/next-steps/spring-boot-with-lombok.html).
 
 After starting the application it is accessible under `localhost:8080`.
 
@@ -36,9 +49,3 @@ environment variable when running the container.
 ```
 gradlew bootBuildImage --imageName=com.amadeus/api
 ```
-
-## Further readings
-
-* [Gradle user manual](https://docs.gradle.org/)  
-* [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)  
-* [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)  
