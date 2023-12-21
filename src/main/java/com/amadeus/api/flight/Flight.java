@@ -40,8 +40,8 @@ public class Flight {
     @Column(nullable = false)
     private LocalDateTime departureTime;
 
-    @Column(nullable = false)
-    private LocalDateTime arrivalTime;
+    @Column()
+    private LocalDateTime returnTime;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal ticketPrice;
