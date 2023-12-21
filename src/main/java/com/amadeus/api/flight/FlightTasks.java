@@ -101,7 +101,7 @@ public class FlightTasks {
             flightDTO.setReturnTime(returnTime);
         }
 
-        flightDTO.setTicketPrice(BigDecimal.valueOf((int) (Math.random() * 1000) / 10.0));
+        flightDTO.setTicketPrice(BigDecimal.valueOf((int) (20 + Math.random() * 1000) / 10.0));
         flightDTO.setTicketCurrency(currencies.get((int) (Math.random() * currencies.size())));
 
         return flightDTO;
