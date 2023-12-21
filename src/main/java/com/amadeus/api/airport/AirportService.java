@@ -1,19 +1,24 @@
 package com.amadeus.api.airport;
 
+import com.amadeus.api.flight.FlightDTO;
+import com.amadeus.api.flight.FlightService;
+import com.amadeus.api.util.IllegalActionException;
 import com.amadeus.api.util.NotFoundException;
 import java.util.List;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 
 @Service
 public class AirportService {
 
     private final AirportRepository airportRepository;
+    private final FlightService flightService;
 
-    public AirportService(final AirportRepository airportRepository) {
+    public AirportService(AirportRepository airportRepository, FlightService flightService) {
         this.airportRepository = airportRepository;
+        this.flightService = flightService;
     }
 
     public List<AirportDTO> findAll() {
@@ -50,6 +55,14 @@ public class AirportService {
     }
 
     public void delete(final Long id) {
+        Airport airport = airportRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("airport not found"));
+
+        List<FlightDTO> associatedFlights = flightService.findAllByAirportId(airport.getId());
+        if (!associatedFlights.isEmpty()) {
+            throw new IllegalActionException("Cannot delete airport with associated flights.");
+        }
+
         airportRepository.deleteById(id);
     }
 
