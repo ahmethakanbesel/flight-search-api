@@ -16,8 +16,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name = "Flights", indexes = {
-        @Index(name = "idx_departure_airport", columnList = "departure_airport_id"),
-        @Index(name = "idx_arrival_airport", columnList = "arrival_airport_id")
+        @Index(columnList = "departure_airport_id"),
+        @Index(columnList = "arrival_airport_id")
 })
 @EntityListeners(AuditingEntityListener.class)
 @Getter
@@ -50,11 +50,11 @@ public class Flight {
     @Column(nullable = false, length = 3)
     private String ticketCurrency;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "departure_airport_id", nullable = false)
     private Airport departureAirport;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "arrival_airport_id", nullable = false)
     private Airport arrivalAirport;
 
