@@ -8,18 +8,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
 public class FlightTasks {
 
     private static final Logger log = LoggerFactory.getLogger(FlightTasks.class);
-
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     private final FlightService flightService;
     private final AirportService airportService;
@@ -29,8 +25,9 @@ public class FlightTasks {
         this.airportService = airportService;
     }
 
-    //@Scheduled(cron = "0 0 * * *")
-    @Scheduled(cron = "* * * * * *")
+    // Uncomment to run once a day at midnight
+    // @Scheduled(cron = "0 0 * * * *")
+    @Scheduled(fixedDelay = 15000)
     public void retrieveFlights() {
         log.info("Retrieving flights from the API.");
         try {
