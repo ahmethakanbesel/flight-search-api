@@ -3,14 +3,13 @@ package com.amadeus.api.search;
 import com.amadeus.api.flight.FlightDTO;
 import com.amadeus.api.flight.FlightService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
-import java.time.LocalDate;
-import java.util.List;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -29,7 +28,7 @@ public class SearchController {
 
     @GetMapping
     public ResponseEntity<List<FlightDTO>> getAllFlights(
-            @RequestParam() String departureCity,
+            @RequestParam()  String departureCity,
             @RequestParam() @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate,
             @RequestParam() String arrivalCity,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate returnDate
