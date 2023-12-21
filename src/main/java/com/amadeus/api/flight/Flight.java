@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -50,11 +51,11 @@ public class Flight {
     private String ticketCurrency;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "departure_airport_id", nullable = false, unique = true)
+    @JoinColumn(name = "departure_airport_id", nullable = false)
     private Airport departureAirport;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "arrival_airport_id", nullable = false, unique = true)
+    @JoinColumn(name = "arrival_airport_id", nullable = false)
     private Airport arrivalAirport;
 
     @CreatedDate
@@ -65,4 +66,7 @@ public class Flight {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    public void setTicketCurrency(@NotNull String ticketCurrency) {
+        this.ticketCurrency = ticketCurrency.toUpperCase();
+    }
 }
