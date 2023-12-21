@@ -32,7 +32,7 @@ public class FlightTasks {
     //@Scheduled(cron = "0 0 * * *")
     @Scheduled(cron = "* * * * * *")
     public void retrieveFlights() {
-        log.info("Retrieving flights from the API. ({})", dateFormat.format(new Date()));
+        log.info("Retrieving flights from the API.");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
