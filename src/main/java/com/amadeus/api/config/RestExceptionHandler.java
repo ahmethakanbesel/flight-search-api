@@ -1,5 +1,6 @@
 package com.amadeus.api.config;
 
+import com.amadeus.api.util.IllegalActionException;
 import com.amadeus.api.util.NotFoundException;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.List;
@@ -23,6 +24,15 @@ public class RestExceptionHandler {
         errorResponse.setException(exception.getClass().getSimpleName());
         errorResponse.setMessage(exception.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(IllegalActionException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalAction(final IllegalActionException exception) {
+        final ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setHttpStatus(HttpStatus.BAD_REQUEST.value());
+        errorResponse.setException(exception.getClass().getSimpleName());
+        errorResponse.setMessage(exception.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
