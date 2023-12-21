@@ -11,7 +11,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Entity
-@Table(name = "Airports", indexes = {@Index(name = "idx_airport_city", columnList = "city")})
+@Table(name = "Airports", indexes = {
+        @Index(columnList = "city")
+})
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
