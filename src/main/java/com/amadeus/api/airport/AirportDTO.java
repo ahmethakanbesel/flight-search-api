@@ -15,7 +15,7 @@ public class AirportDTO {
     private Long id;
 
     @NotNull
-    @Size(max = 255)
+    @Size(min=1, max = 255)
     @Schema(type = "string", example = "Istanbul")
     private String city;
 
