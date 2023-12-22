@@ -1,8 +1,6 @@
 package com.amadeus.api.flight;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -39,8 +37,7 @@ public class FlightController {
     }
 
     @PostMapping
-    @Operation(security = @SecurityRequirement(name = "basicAuth"))
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createFlight(@RequestBody @Valid final FlightDTO flightDTO) {
         final Long createdId = flightService.create(flightDTO);
@@ -48,8 +45,7 @@ public class FlightController {
     }
 
     @PutMapping("/{id}")
-    @Operation(security = @SecurityRequirement(name = "basicAuth"))
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Long> updateFlight(@PathVariable(name = "id") final Long id,
                                              @RequestBody @Valid final FlightDTO flightDTO) {
         flightService.update(id, flightDTO);
@@ -57,8 +53,7 @@ public class FlightController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(security = @SecurityRequirement(name = "basicAuth"))
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiResponse(responseCode = "204")
     public ResponseEntity<Void> deleteFlight(@PathVariable(name = "id") final Long id) {
         flightService.delete(id);

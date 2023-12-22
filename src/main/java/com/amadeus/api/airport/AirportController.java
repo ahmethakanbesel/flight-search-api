@@ -1,8 +1,6 @@
 package com.amadeus.api.airport;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -42,8 +40,7 @@ public class AirportController {
     }
 
     @PostMapping
-    @Operation(security = @SecurityRequirement(name = "basicAuth"))
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Long> createAirport(@RequestBody @Valid final AirportDTO airportDTO) {
         final Long createdId = airportService.create(airportDTO);
@@ -51,8 +48,7 @@ public class AirportController {
     }
 
     @PutMapping("/{id}")
-    @Operation(security = @SecurityRequirement(name = "basicAuth"))
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Long> updateAirport(@PathVariable(name = "id") final Long id,
                                               @RequestBody @Valid final AirportDTO airportDTO) {
         airportService.update(id, airportDTO);
@@ -60,8 +56,7 @@ public class AirportController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(security = @SecurityRequirement(name = "basicAuth"))
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ApiResponse(responseCode = "204")
     public ResponseEntity<Void> deleteAirport(@PathVariable(name = "id") final Long id) {
         airportService.delete(id);

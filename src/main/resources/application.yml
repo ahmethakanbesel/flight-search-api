@@ -18,3 +18,13 @@ spring:
           new_generator_mappings: true
 springdoc:
   pathsToMatch: /api/**
+application:
+  security:
+    jwt:
+      secret-key: 6352665584720B4B6250644E7235755367566B56A586E32438782F413F442970
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+# logging:
+#  level:
+#    root: debug
