@@ -10,6 +10,7 @@
 - JWT Authentication
 - Spring Security
 - Spring Data JPA
+- jUnit
 
 ## Assumptions & Notes
 
@@ -18,7 +19,7 @@
     authentication.
 - Unique id (`Long`) of airports used as `IATA` code.
 - Folder structure is based on domain driven design.
-- Unfortunately, tests are incomplete.
+- Unfortunately, tests are insufficient to test all scenarios.
 - There can be multiple airports in the same city.
 - The scheduled task runs every 15 seconds to demonstrate the functionality. You can uncomment the `@Scheduled`
   annotation
