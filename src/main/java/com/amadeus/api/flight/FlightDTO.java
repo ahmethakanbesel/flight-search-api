@@ -36,7 +36,7 @@ public class FlightDTO {
     private BigDecimal ticketPrice;
 
     @NotNull
-    @Size(min=3, max = 3)
+    @Size(min = 3, max = 3)
     @Schema(type = "string", example = "USD")
     private String ticketCurrency;
 

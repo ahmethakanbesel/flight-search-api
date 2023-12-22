@@ -51,7 +51,7 @@ public class FlightController {
     @Operation(security = @SecurityRequirement(name = "basicAuth"))
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Long> updateFlight(@PathVariable(name = "id") final Long id,
-            @RequestBody @Valid final FlightDTO flightDTO) {
+                                             @RequestBody @Valid final FlightDTO flightDTO) {
         flightService.update(id, flightDTO);
         return ResponseEntity.ok(id);
     }

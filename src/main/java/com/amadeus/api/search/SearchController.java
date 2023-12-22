@@ -28,7 +28,7 @@ public class SearchController {
 
     @GetMapping
     public ResponseEntity<List<FlightDTO>> getAllFlights(
-            @RequestParam()  String departureCity,
+            @RequestParam() String departureCity,
             @RequestParam() @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate,
             @RequestParam() String arrivalCity,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate returnDate

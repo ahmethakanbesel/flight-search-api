@@ -54,7 +54,7 @@ public class AirportController {
     @Operation(security = @SecurityRequirement(name = "basicAuth"))
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Long> updateAirport(@PathVariable(name = "id") final Long id,
-            @RequestBody @Valid final AirportDTO airportDTO) {
+                                              @RequestBody @Valid final AirportDTO airportDTO) {
         airportService.update(id, airportDTO);
         return ResponseEntity.ok(id);
     }
