@@ -18,6 +18,7 @@
     authentication.
 - Unique id (`Long`) of airports used as `IATA` code.
 - Folder structure is based on domain driven design.
+- Unfortunately, tests are incomplete.
 - There can be multiple airports in the same city.
 - The scheduled task runs every 15 seconds to demonstrate the functionality. You can uncomment the `@Scheduled`
   annotation
