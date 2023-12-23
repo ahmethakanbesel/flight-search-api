@@ -26,7 +26,7 @@ public class FlightTasks {
     }
 
     // Uncomment to run once a day at midnight
-    // @Scheduled(cron = "0 0 * * * *")
+    // @Scheduled(cron = "0 0 0 * * *")
     @Scheduled(fixedDelay = 15000)
     public void retrieveFlights() {
         log.info("Retrieving flights from the API.");
